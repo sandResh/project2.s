@@ -27,3 +27,9 @@
 		addi $t1, $t1, 1
 		bgt $t1, 4, tooLong
 		j length
+
+	convert:
+		beq $t1, 0, printDecimal
+		addi $t0, $t0, -1     # Move one character backward in the string
+		lb $t2, 0($t0)
+		beq $t2, 32, checkSpace   # If character is space go to checkSpace to check whether the space is at middle of string or not
