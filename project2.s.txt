@@ -37,6 +37,11 @@
 		addi $t1, $t1, -1		# Decrement $t1 by 1
 		j convertChar
 
+	exit:
+		#Exiting the program
+		li $v0, 10
+		syscall
+
 
 
 
