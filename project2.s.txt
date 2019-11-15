@@ -69,6 +69,10 @@
 
 		blt $t2, 65, invalidChar
 		blt $t2, 85, convertUpper
+		blt $t2, 97, invalidChar
+		blt $t2, 117, convertLower
+
+		j invalidChar
 
 
 
