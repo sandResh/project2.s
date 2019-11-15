@@ -100,6 +100,11 @@
 		syscall
 		j exit
 
+	empty:
+ 		li $v0, 4
+ 		la $a0 INVALID_INPUT
+ 		syscall
+ 		j exit
 
 
 
