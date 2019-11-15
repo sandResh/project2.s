@@ -1,0 +1,5 @@
+.data
+	theString: .space 1000
+
+	#Error Messages
+	INVALID_INPUT: .asciiz  "Invalid input"
