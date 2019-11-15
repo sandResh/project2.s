@@ -11,7 +11,16 @@
 		la $a0, theString
 		syscall
 
-		la $t0, theString
+    
+        la $a0, theString
+        jal helperFunction
+        
+		#Exiting the program
+		li $v0, 10
+		syscall
+
+helperFunction:
+		move $t0, $a0
 		li $s0, 0				#Initializing registers to store value of decimal
 		li $s7, 0				# Flag to help check space in the middle of string($s0 is 1 after first non space character is encountered, otherwise 0)
 		li $t4, 1				# Initializing power to be multiplied
@@ -37,10 +46,7 @@
 		addi $t1, $t1, -1		# Decrement $t1 by 1
 		j convertChar
 
-	exit:
-		#Exiting the program
-		li $v0, 10
-		syscall
+	
 
 	# Ignore the spaces at the end of theString, if space found in the middle print error message
 	checkSpace:
@@ -90,7 +96,7 @@
 		mult $t5, $t4 					# Multilpy the value with power
 		mflo $t5					# Move result of multiplication to $t5
 		add $s0, $s0, $t5 				# Increment the decimal value by result of multiplication
-		mult $t4, $s1					# Multiply the power by 27
+		mult $t4, $s1					# Multiply the power by 30
 		mflo $t4
 		j convert 					# Jump back to convert
 
@@ -98,43 +104,22 @@
 		li $v0, 1
 		add $a0, $s0, $zero
 		syscall
-		j exit
+		jr $ra
 
 	empty:
  		li $v0, 4
- 		la $a0 INVALID_INPUT
+ 		la $a0, INVALID_INPUT
  		syscall
- 		j exit
+ 		jr $ra
 	
 	tooLong:
 	 	li $v0, 4
 	 	la $a0, INVALID_INPUT
 	 	syscall
-	 	j exit
+	 	jr $ra
 
 	invalidChar:
 	 	li $v0, 4
 	 	la $a0, INVALID_INPUT
 	 	syscall
-	 	j exit
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	 	jr $ra
